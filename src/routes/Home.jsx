@@ -1,7 +1,7 @@
 import Navbar from "../components/Navbar";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
-import {resumes} from "../../constants";
+import { useEffect, useState } from "react";
+import {Resumes} from "../../constants";
 import ResumeCard from '../components/ResumeCard'
 import { usePuterStore } from "../../lib/puter";
 export function meta() {
@@ -12,15 +12,33 @@ export function meta() {
 }
 
 export default function Home() {
-    const { auth } = usePuterStore();
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      if (auth.isAuthenticated ) {
-        navigate('/auth?next=/upload');
-      }
-    }, [auth.isAuthenticated]);
-  
+    const { auth ,fs,kv} = usePuterStore();
+
+    const [resumes, setResumes] = useState([]);
+  const [loadingResumes, setLoadingResumes] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!auth.isAuthenticated) navigate("/auth?next=/");
+  }, [auth.isAuthenticated, navigate]);
+
+  useEffect(() => {
+    const loadResumes = async () => {
+      setLoadingResumes(true);
+
+      const resumes = await kv.list("resume:*", true);
+
+      const parsedResumes = resumes?.map((resume) => JSON.parse(resume.value));
+
+      setResumes(parsedResumes || []);
+      setLoadingResumes(false);
+    };
+
+    loadResumes();
+  }, [kv]);
+
+ const dataToRender = resumes.length > 0 ? resumes : Resumes;
+
   return <main className="bg-[url('/images/bg-main.svg')] bg-cover">
     <Navbar/>
     
@@ -29,15 +47,12 @@ export default function Home() {
         <h1 className="text-3xl font-bold  ">Track Applications & <br /> Resume Rating</h1>
         <h2 className="text-2xl ">Review Your Submissions and check AI-powered feedback</h2>
       </div>
-   
-{resumes.length >0 &&(
-<div className=" flex flex-wrap max-lg:flex-col max-sm:gap-y-10 md:gap-y-40 max-md:p-5 pt-10  w-full max-w-[1850px] justify-evenly items-center">
-{resumes.map((res) => (
-  <ResumeCard key={res.id} resume={res}/>
-))}
-    </div>
-)}
-    
+
+     <div className="flex flex-wrap max-lg:flex-col max-sm:gap-y-10 md:gap-y-40 max-md:p-5 pt-10 w-full max-w-[1850px] justify-evenly items-center">
+          {dataToRender.map((res) => (
+            <ResumeCard key={res.id} resume={res} />
+          ))}
+        </div>
     </section>
   </main>
 }
