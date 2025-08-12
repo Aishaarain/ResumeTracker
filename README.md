@@ -1,9 +1,4 @@
-<div align="center">
-  <br />
-    <a href="https://www.youtube.com/watch?v=iYOz165wGkQ" target="_blank">
-      <img src="public/readme/hero.webp" alt="Project Banner">
-    </a>
-  <br />
+
 
   <div>
     <img alt="Static Badge" src="https://img.shields.io/badge/React-4c84f3?style=for-the-badge&logo=react&logoColor=white">
@@ -58,6 +53,6 @@ Build an AI-powered Resume Analyzer using React, React Router, and Puter.js. Sig
 
 👉 **Cross-Device Compatibility**: Fully responsive design that works seamlessly across all devices.
 
-👉 **Modern UI/UX**: Clean, responsive design built with Tailwind CSS and shadcn/ui for a sleek user experience.
+👉 **Modern UI/UX**: Clean, responsive design built with Tailwind CSS.
 
 And many more, including code architecture and reusability.
