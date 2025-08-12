@@ -17,7 +17,6 @@
 3. 🔋 [Features](#features)
 
 
-## 🚨 Tutorial
 
 
 ## <a name="introduction">✨ Introduction</a>
