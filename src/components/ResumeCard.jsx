@@ -21,7 +21,7 @@ const ResumeCard = ({ resume }) => {
 
   return (
     <Link to={`/resume/${resume.id}`} className='  animate-in duration-1000 flex flex-col gap-8 h-[560px]   w-full lg:w-[450px] xl:w-[490px] bg-white rounded-2xl p-4;'>
-        <div className='flex flex-row gap-2 justify-between min-h-[110px] max-sm:flex-col items-center max-md:justify-center max-md:items-center;'>
+        <div className='flex flex-row gap-2 justify-between  max-sm:flex-col items-center max-md:justify-center max-md:items-center'>
         <div className='flex flex-col gap-2  '>
             {companyName&&<h2 className='text-black p-5 font-bold break-words'>
                 {resume.companyName}
