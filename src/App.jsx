@@ -3,7 +3,7 @@ import {   Routes, Route } from 'react-router-dom';
 import Home from './routes/Home';
 import Auth from './routes/Auth';
 import Upload from './routes/Upload';
-import Navbar from './components/Navbar';
+import Resume  from './routes/Resume';
 
 const App = () => {
   return (
@@ -13,6 +13,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/auth" element={<Auth />} />
          <Route path="/upload" element={<Upload />} />
+           <Route path="/resume/:id" element={<Resume />} />
       </Routes>
     </div>
   );

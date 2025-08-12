@@ -17,7 +17,7 @@ export default function Home() {
   
     useEffect(() => {
       if (auth.isAuthenticated ) {
-        navigate('/auth');
+        navigate('/auth?next=/upload');
       }
     }, [auth.isAuthenticated]);
   
